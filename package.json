@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "express": "^5.1.0",
     "mime-types": "^3.0.1",
     "mongoose": "^8.13.2",
     "node-webpmux": "^3.2.1",
@@ -20,6 +21,7 @@
     "wwebjs-mongo": "^1.1.0"
   },
   "devDependencies": {
+    "@types/express": "^5.0.1",
     "@types/mime-types": "^2.1.4",
     "@types/qrcode-terminal": "^0.12.2"
   }

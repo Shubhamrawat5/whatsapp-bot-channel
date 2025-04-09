@@ -2,10 +2,23 @@ import { Client, RemoteAuth } from "whatsapp-web.js";
 import qrcode from "qrcode-terminal";
 import { MongoStore } from "wwebjs-mongo";
 import mongoose from "mongoose";
+import express, { Express, Request, Response } from "express";
 import "dotenv/config";
 
 const stickerChannel = "120363417696270115@newsletter";
 const testingChannel = "120363398801923614@newsletter";
+
+const app: Express = express();
+const port = process.env.PORT || 80;
+
+app.get("/", (req: Request, res: Response) => {
+  console.log("Get request to /");
+  res.end("Web-server running!");
+});
+
+app.listen(port, () => {
+  console.log("\nWeb-server running!");
+});
 
 if (!process.env.MONGODB_URI) {
   throw new Error("Missing MONGODB_URI in environment variables.");
