@@ -48,7 +48,7 @@ mongoose
 
         if (media) {
           try {
-            await client.sendMessage(testingChannel, media, {
+            await client.sendMessage(stickerChannel, media, {
               sendMediaAsSticker: true,
               stickerAuthor: "xyz",
               stickerName: "test",
