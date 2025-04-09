@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node ./src/bot.ts"
+    "heroku-prebuild": "npm install --only=dev",
+    "build": "rimraf dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
