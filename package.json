@@ -1,0 +1,26 @@
+{
+  "name": "whatsapp-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/bot.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mime-types": "^3.0.1",
+    "mongoose": "^8.13.2",
+    "node-webpmux": "^3.2.1",
+    "qrcode-terminal": "^0.12.0",
+    "wa-sticker-formatter": "^4.4.4",
+    "whatsapp-web.js": "github:YonatanZviLevy/whatsapp-web.js#pull/2/head",
+    "wwebjs-mongo": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/qrcode-terminal": "^0.12.2"
+  }
+}
