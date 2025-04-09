@@ -33,6 +33,9 @@ mongoose
         store: store,
         backupSyncIntervalMs: 300000,
       }),
+      puppeteer: {
+        args: ["--no-sandbox"],
+      },
     });
 
     client.initialize();
