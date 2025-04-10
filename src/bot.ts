@@ -1,5 +1,6 @@
 import { Client, RemoteAuth } from "whatsapp-web.js";
-import qrcode from "qrcode-terminal";
+// import qrcode from "qrcode-terminal";
+import qrcode from "qrcode";
 import { MongoStore } from "wwebjs-mongo";
 import mongoose from "mongoose";
 import express, { Express, Request, Response } from "express";
@@ -8,12 +9,27 @@ import "dotenv/config";
 const stickerChannel = "120363417696270115@newsletter";
 const testingChannel = "120363398801923614@newsletter";
 
+let qrCode: string | undefined;
+
 const app: Express = express();
 const port = process.env.PORT || 80;
 
 app.get("/", (req: Request, res: Response) => {
   console.log("Get request to /");
   res.end("Web-server running!");
+});
+
+app.get("/connect", async (req: Request, res: Response) => {
+  console.log("Get request to /connect");
+
+  if (qrCode) {
+    res.setHeader("content-type", "image/png");
+    res.end(await qrcode.toBuffer(qrCode));
+  } else {
+    res.end(
+      "An issue has been encountered while generating the QR code. Please keep refreshing the page to display a new QR code."
+    );
+  }
 });
 
 app.listen(port, () => {
@@ -46,6 +62,7 @@ mongoose
       if (message.hasMedia) {
         const media = await message.downloadMedia();
 
+        console.log("Media downloaded:", media);
         if (media) {
           try {
             await client.sendMessage(stickerChannel, media, {
@@ -70,8 +87,10 @@ mongoose
       console.log("Client is ready!");
     });
 
-    client.on("qr", (qr: any) => {
-      qrcode.generate(qr, { small: true });
+    client.on("qr", (qr) => {
+      console.log("QR RECEIVED, open /connect");
+      // qrcode.generate(qr, { small: true });
+      qrCode = qr;
     });
 
     client.on("remote_session_saved", () => {
