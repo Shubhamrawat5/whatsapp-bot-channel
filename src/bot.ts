@@ -8,6 +8,9 @@ import "dotenv/config";
 
 const stickerChannel = "120363417696270115@newsletter";
 const testingChannel = "120363398801923614@newsletter";
+const stickeronly1 = "919557666582-1628610549@g.us";
+const stickeronly2 = "919557666582-1586018947@g.us";
+const testingGroup = "120363303907535182@g.us";
 
 let qrCode: string | undefined;
 
@@ -59,7 +62,13 @@ mongoose
     client.on("message_create", async (message) => {
       if (message.id.fromMe) return; // Ignore messages sent by the bot itself
 
-      if (message.hasMedia) {
+      // console.log("Message received:", message);
+
+      if (
+        message.hasMedia &&
+        message.type === "sticker" &&
+        (message.from === stickeronly1 || message.from === testingGroup)
+      ) {
         const media = await message.downloadMedia();
 
         console.log("Media downloaded:", media);
@@ -78,7 +87,7 @@ mongoose
         }
       }
 
-      if (message.body === "!ping") {
+      if (message.body === "#ping") {
         client.sendMessage(message.from, "pong");
       }
     });
