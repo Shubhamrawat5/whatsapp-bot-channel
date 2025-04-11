@@ -7,7 +7,7 @@
     "heroku-prebuild": "npm install --only=dev",
     "build": "rimraf dist && tsc",
     "start": "npm run build && node dist/bot.js",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/bot.ts"
   },
   "author": "",
   "license": "ISC",

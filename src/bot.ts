@@ -71,7 +71,6 @@ mongoose
       ) {
         const media = await message.downloadMedia();
 
-        console.log("Media downloaded:", media);
         if (media) {
           try {
             await client.sendMessage(stickerChannel, media, {
